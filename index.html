@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Random Quote Generator</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+    <link href='https://fonts.googleapis.com/css?family=VT323|Monofett' rel='stylesheet' type='text/css'>
+
+    <style media="screen">
+      body{
+      	min-height:100%;
+        background:url('https://a70ad2286f61480d09f6-40c8dcc3b4e860eda813b35e4eaad82c.ssl.cf1.rackcdn.com/bukowskipainting115.jpg') center center no-repeat;
+        background-size: cover;
+      }
+
+      .wrapper {
+        position: relative;
+        height: 100vh;
+      }
+
+      .jumbotron {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      .steph {
+          font-family: vt323;
+          font-size: 24px;
+      }
+    </style>
+
+  </head>
+  <body>
+    <div class="container-fluid">
+      <p class="steph pull-right">by <a href="https://www.twitter.com/stephaniecodes">stephanie</a></p>
+
+    <div class="wrapper">
+      <div class="jumbotron">
+        <p class="text-right quote"></p>
+        <p><a class="btn btn-primary btn-lg pull-right" href="#" role="button">Tweet this</a></p>
+      </div>
+    </div>
+
+  </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+      var quotes = [
+        "We’re all going to die, all of us, what a circus! That alone should make us love each other but it doesn’t. We are terrorized and flattened by trivialities; we are eaten up by nothing.",
+        "The problem with the world is that the intelligent people are full of doubt, while the stupid people are full of confidence.",
+        "Your life is your life. Know it while you have it.",
+        "You can’t beat death but you can beat death in life, sometimes.",
+        "There’s a bluebird in my heart that wants to get out but I’m too tough for him, I say, stay in there, I’m not going to let anybody see you",
+        "Find what you love and let it kill you.",
+        "What matters most is how well you walk through the fire."
+      ]
+
+      var quote = function() {
+        value = Math.floor(Math.random() * 7) + 1;
+        return quotes[value];
+      }
+
+      $(document).ready(function() {
+        $(".quote").html(quote);
+      });
+    </script>
+  </body>
+</html>
