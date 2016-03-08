@@ -92,8 +92,8 @@
       }
 
       .steph {
-          font-family: vt323;
-          font-size: 24px;
+          font-family: 'Comfortaa';
+          font-size: 16px;
       }
     </style>
 
@@ -108,7 +108,11 @@
           <p class="text-right author">- Charles Bukowski</p>
 
           <div class="row">
-            <div class="col-xs-4"><i class="fa fa-twitter fa-2x"></i></div>
+            <div class="col-xs-4">
+              <div id="tweetThis">
+                <a href="#" target="blank"><i class="fa fa-twitter fa-2x"></a></i>
+              </div>
+            </div>
             <div class="col-xs-4 col-xs-offset-4"><button id="getQuote" class=" btn btn-primary pull-right">Click</a></div>
           </div>
 
@@ -118,28 +122,34 @@
   </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <script type="text/javascript">
-      var quotes = [
-        "We’re all going to die, all of us, what a circus! That alone should make us love each other but it doesn’t. We are terrorized and flattened by trivialities; we are eaten up by nothing.",
-        "The problem with the world is that the intelligent people are full of doubt, while the stupid people are full of confidence.",
-        "Your life is your life. Know it while you have it.",
-        "You can’t beat death but you can beat death in life, sometimes.",
-        "There’s a bluebird in my heart that wants to get out but I’m too tough for him, I say, stay in there, I’m not going to let anybody see you.",
-        "Find what you love and let it kill you.",
-        "What matters most is how well you walk through the fire.",
-        "We're all going to die, all of us, what a circus! That alone should make us love each other but it doesn't. We are terrorized and flattened by trivialities, we are eaten up by nothing.",
-        "You have to die a few times before you can really live."
-      ]
-
-      var quote = function() {
-        value = Math.floor(Math.random() * 9);
-        return quotes[value];
-      }
-
       $(document).ready(function() {
-        $(".quote").html(quote);
+        var quotes = [
+          "We’re all going to die, all of us, what a circus! That alone should make us love each other but it doesn’t. We are terrorized and flattened by trivialities; we are eaten up by nothing.",
+          "The problem with the world is that the intelligent people are full of doubt, while the stupid people are full of confidence.",
+          "Your life is your life. Know it while you have it.",
+          "You can’t beat death but you can beat death in life, sometimes.",
+          "There’s a bluebird in my heart that wants to get out but I’m too tough for him, I say, stay in there, I’m not going to let anybody see you.",
+          "Find what you love and let it kill you.",
+          "What matters most is how well you walk through the fire.",
+          "We're all going to die, all of us, what a circus! That alone should make us love each other but it doesn't. We are terrorized and flattened by trivialities, we are eaten up by nothing.",
+          "You have to die a few times before you can really live."
+        ]
 
+        function randomQuote() {
+          value = Math.floor(Math.random() * 9);
+          return quotes[value];
+        }
+
+        // Initial quote & twitter setup
+        var quote = randomQuote();
+        $(".quote").html(quote);
+        $("#tweetThis a").attr("href", "https://www.twitter.com/intent/tweet?text=" + encodeURIComponent('"' + quote + '"'));
+
+        // Update quote & twitter text on click
         $("#getQuote").on("click", function() {
-          $(".quote").html(quote);
+          var newQuote = randomQuote();
+          $(".quote").html(newQuote);
+          $("#tweetThis a").attr("href", "https://www.twitter.com/intent/tweet?text=" + encodeURIComponent('"' + newQuote + '"'));
         });
       });
     </script>
