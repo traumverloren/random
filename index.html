@@ -8,7 +8,7 @@
     <title>Random Quote Generator</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
-    <link href='https://fonts.googleapis.com/css?family=VT323|Monofett' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=VT323|Comfortaa' rel='stylesheet' type='text/css'>
 
     <style media="screen">
       body{
@@ -17,16 +17,65 @@
         background-size: cover;
       }
 
-      .wrapper {
-        position: relative;
-        height: 100vh;
+      .vertical-center {
+        min-height: 100%;  /* Fallback for vh unit */
+        min-height: 100vh; /* You might also want to use
+                              'height' property instead.
+
+                              Note that for percentage values of
+                              'height' or 'min-height' properties,
+                              the 'height' of the parent element
+                              should be specified explicitly.
+
+                              In this case the parent of '.vertical-center'
+                              is the <body> element */
+
+        /* Make it a flex container */
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+
+        /* Align the bootstrap's container vertically */
+          -webkit-box-align : center;
+        -webkit-align-items : center;
+             -moz-box-align : center;
+             -ms-flex-align : center;
+                align-items : center;
+
+        /* In legacy web browsers such as Firefox 9
+           we need to specify the width of the flex container */
+        width: 100%;
+
+        /* Also 'margin: 0 auto' doesn't have any effect on flex items in such web browsers
+           hence the bootstrap's container won't be aligned to the center anymore.
+
+           Therefore, we should use the following declarations to get it centered again */
+               -webkit-box-pack : center;
+                  -moz-box-pack : center;
+                  -ms-flex-pack : center;
+        -webkit-justify-content : center;
+                justify-content : center;
       }
 
       .jumbotron {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+      }
+
+      .jumbotron .quote {
+          font-family: 'Comfortaa';
+          color: #2c3e50;
+          font-size: 28px;
+        }
+
+      .jumbotron .author {
+          font-family: 'Comfortaa';
+          color: #2c3e50;
+          font-size: 20px;
       }
 
       .steph {
@@ -40,12 +89,13 @@
     <div class="container-fluid">
       <p class="steph pull-right">by <a href="https://www.twitter.com/stephaniecodes">stephanie</a></p>
 
-    <div class="wrapper">
-      <div class="jumbotron">
-        <p class="text-right quote"></p>
-        <p><a class="btn btn-primary btn-lg pull-right" href="#" role="button">Tweet this</a></p>
+      <div class="vertical-center">
+        <div class="jumbotron">
+          <p class="text-right quote"></p>
+          <p class="text-right author">- Charles Bukowski</p>
+          <a class="btn btn-primary pull-right" href="#" role="button">Click</a>
+        </div>
       </div>
-    </div>
 
   </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
@@ -56,13 +106,13 @@
         "The problem with the world is that the intelligent people are full of doubt, while the stupid people are full of confidence.",
         "Your life is your life. Know it while you have it.",
         "You can’t beat death but you can beat death in life, sometimes.",
-        "There’s a bluebird in my heart that wants to get out but I’m too tough for him, I say, stay in there, I’m not going to let anybody see you",
+        "There’s a bluebird in my heart that wants to get out but I’m too tough for him, I say, stay in there, I’m not going to let anybody see you.",
         "Find what you love and let it kill you.",
         "What matters most is how well you walk through the fire."
       ]
 
       var quote = function() {
-        value = Math.floor(Math.random() * 7) + 1;
+        value = Math.floor(Math.random() * 7);
         return quotes[value];
       }
 
