@@ -147,6 +147,7 @@
 
         // Update quote & twitter text on click
         $("#getQuote").on("click", function() {
+          $("#getQuote").blur();
           var newQuote = randomQuote();
           $(".quote").html(newQuote);
           $("#tweetThis a").attr("href", "https://www.twitter.com/intent/tweet?text=" + encodeURIComponent('"' + newQuote + '"'));
