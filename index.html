@@ -12,9 +12,9 @@
     <link href='https://fonts.googleapis.com/css?family=VT323|Comfortaa' rel='stylesheet' type='text/css'>
 
     <style media="screen">
-      body{
+      body .background {
       	min-height:100%;
-        background:url('images/painting-101.jpg') center center no-repeat;
+        background: url('images/0.jpg') center center no-repeat;
         background-size: cover;
       }
 
@@ -66,17 +66,19 @@
           left: 50%;
           transform: translate(-50%, -50%);
           background-color: white;
+          font-family: 'Comfortaa';
       }
 
+      .jumbotron .title {
+          font-size: 18px;
+          font-weight: bold;
+        }
+
       .jumbotron .quote {
-          font-family: 'Comfortaa';
-          color: #2c3e50;
           font-size: 16px;
         }
 
       .jumbotron .author {
-          font-family: 'Comfortaa';
-          color: #2c3e50;
           font-size: 12px;
       }
 
@@ -86,16 +88,21 @@
       }
 
       @media (min-width: 768px) {
+        .jumbotron {
+          font-family: 'Comfortaa';
+        }
+
         .jumbotron .author {
-            font-family: 'Comfortaa';
-            color: #2c3e50;
-            font-size: 20px;
+            font-size: 18px;
         }
         .jumbotron .quote {
-            font-family: 'Comfortaa';
-            color: #2c3e50;
-            font-size: 28px;
+            font-size: 22px;
         }
+
+        .jumbotron .title {
+            font-size: 26px;
+            font-weight: bold;
+          }
       }
 
       .steph {
@@ -106,14 +113,15 @@
 
   </head>
   <body>
-    <div class="container-fluid">
+    <div class="background container-fluid">
       <p class="steph pull-right">by <a href="https://www.twitter.com/stephaniecodes">stephanie</a></p>
 
       <div class="vertical-center">
         <div class="jumbotron">
           <div class="quote-info">
             <img src="images/sketch.jpg" class="sketch img-responsive center-block" alt="These words I write keep me from total madness. - Charles Bukowski" />
-            <p class="text-right quote">Charles Bukowski. I have found his quotes relevant for every part of my life.</p>
+            <p class="text-right title">Charles Bukowski.</p>
+            <p class="text-right quote"></p>
           </div>
           <p class="text-right author">- Charles Bukowski</p>
 
@@ -123,7 +131,7 @@
                 <a href="#" target="blank"><i class="fa fa-twitter fa-2x"></a></i>
               </div>
             </div>
-            <div class="col-xs-4 col-xs-offset-4"><button id="getQuote" class=" btn btn-primary pull-right">Click for quote</a></div>
+            <div class="col-xs-4 col-xs-offset-4"><button id="getQuote" class="btn btn-primary pull-right">Click for quote</a></div>
           </div>
 
         </div>
@@ -150,18 +158,27 @@
           return quotes[value];
         }
 
+        function randomImage() {
+          value = Math.floor(Math.random() * 6);
+          return "url('images/" + value + ".jpg')";
+        }
+
         // Initial twitter setup, hide author div initially.
         $("#tweetThis a").attr("href", "https://www.twitter.com/intent/tweet?url=" + encodeURIComponent("http://traumverloren.github.io/random/"));
         $(".author").hide();
 
-        // Update quote & twitter text on click and show author div.
+        // Update quote & twitter text on click, change background image, and show author div.
         $("#getQuote").on("click", function() {
           $("#getQuote").blur();
           var newQuote = randomQuote();
           $(".quote").html(newQuote);
           $(".author").show();
           $(".sketch").hide();
+          $(".title").hide();
           $("#tweetThis a").attr("href", "https://www.twitter.com/intent/tweet?text=" + encodeURIComponent(newQuote));
+
+          var newImage = randomImage();
+          $('.background').css({'background': newImage + " center center no-repeat", "min-height": "100%", "background-size": "cover"});
         });
       });
     </script>
