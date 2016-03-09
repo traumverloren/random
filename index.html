@@ -14,7 +14,7 @@
     <style media="screen">
       body{
       	min-height:100%;
-        background:url('https://a70ad2286f61480d09f6-40c8dcc3b4e860eda813b35e4eaad82c.ssl.cf1.rackcdn.com/bukowskipainting115.jpg') center center no-repeat;
+        background:url('images/painting-101.jpg') center center no-repeat;
         background-size: cover;
       }
 
@@ -65,6 +65,7 @@
           top: 50%;
           left: 50%;
           transform: translate(-50%, -50%);
+          background-color: white;
       }
 
       .jumbotron .quote {
@@ -78,6 +79,12 @@
           color: #2c3e50;
           font-size: 12px;
       }
+
+      .jumbotron img {
+        max-width: 100%;
+        height: auto;
+      }
+
       @media (min-width: 768px) {
         .jumbotron .author {
             font-family: 'Comfortaa';
@@ -104,7 +111,10 @@
 
       <div class="vertical-center">
         <div class="jumbotron">
-          <p class="text-right quote"></p>
+          <div class="quote-info">
+            <img src="images/sketch.jpg" class="sketch img-responsive center-block" alt="These words I write keep me from total madness. - Charles Bukowski" />
+            <p class="text-right quote">Charles Bukowski. I have found his quotes relevant for every part of my life.</p>
+          </div>
           <p class="text-right author">- Charles Bukowski</p>
 
           <div class="row">
@@ -113,7 +123,7 @@
                 <a href="#" target="blank"><i class="fa fa-twitter fa-2x"></a></i>
               </div>
             </div>
-            <div class="col-xs-4 col-xs-offset-4"><button id="getQuote" class=" btn btn-primary pull-right">Click</a></div>
+            <div class="col-xs-4 col-xs-offset-4"><button id="getQuote" class=" btn btn-primary pull-right">Click for quote</a></div>
           </div>
 
         </div>
@@ -140,17 +150,18 @@
           return quotes[value];
         }
 
-        // Initial quote & twitter setup
-        var quote = randomQuote();
-        $(".quote").html(quote);
-        $("#tweetThis a").attr("href", "https://www.twitter.com/intent/tweet?text=" + encodeURIComponent('"' + quote + '"'));
+        // Initial twitter setup, hide author div initially.
+        $("#tweetThis a").attr("href", "https://www.twitter.com/intent/tweet?url=" + encodeURIComponent("http://traumverloren.github.io/random/"));
+        $(".author").hide();
 
-        // Update quote & twitter text on click
+        // Update quote & twitter text on click and show author div.
         $("#getQuote").on("click", function() {
           $("#getQuote").blur();
           var newQuote = randomQuote();
           $(".quote").html(newQuote);
-          $("#tweetThis a").attr("href", "https://www.twitter.com/intent/tweet?text=" + encodeURIComponent('"' + newQuote + '"'));
+          $(".author").show();
+          $(".sketch").hide();
+          $("#tweetThis a").attr("href", "https://www.twitter.com/intent/tweet?text=" + encodeURIComponent(newQuote));
         });
       });
     </script>
