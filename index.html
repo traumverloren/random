@@ -12,52 +12,43 @@
     <link href='https://fonts.googleapis.com/css?family=VT323|Comfortaa' rel='stylesheet' type='text/css'>
 
     <style media="screen">
-      body .background {
-      	min-height:100%;
-        background: url('images/0.jpg') center center no-repeat;
-        background-size: cover;
+    html, body {
+     margin: 0;
+     padding: 0;
+     height: 100%;
+}
+
+#mainWrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+}
+
+#headerWrapper {
+    flex: 1;
+}
+      html, body {
+          margin: 0;
+          padding: 0;
+          height: 100%;
+      }
+
+      .background {
+          background: url('images/0.jpg') center center no-repeat;
+          background-size: cover;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          min-height:100%;
       }
 
       .vertical-center {
-        min-height: 100%;  /* Fallback for vh unit */
-        min-height: 100vh; /* You might also want to use
-                              'height' property instead.
+          max-width: 50%;
+      }
 
-                              Note that for percentage values of
-                              'height' or 'min-height' properties,
-                              the 'height' of the parent element
-                              should be specified explicitly.
-
-                              In this case the parent of '.vertical-center'
-                              is the <body> element */
-
-        /* Make it a flex container */
-        display: -webkit-box;
-        display: -moz-box;
-        display: -ms-flexbox;
-        display: -webkit-flex;
-        display: flex;
-
-        /* Align the bootstrap's container vertically */
-          -webkit-box-align : center;
-        -webkit-align-items : center;
-             -moz-box-align : center;
-             -ms-flex-align : center;
-                align-items : center;
-
-        /* In legacy web browsers such as Firefox 9
-           we need to specify the width of the flex container */
-        width: 100%;
-
-        /* Also 'margin: 0 auto' doesn't have any effect on flex items in such web browsers
-           hence the bootstrap's container won't be aligned to the center anymore.
-
-           Therefore, we should use the following declarations to get it centered again */
-               -webkit-box-pack : center;
-                  -moz-box-pack : center;
-                  -ms-flex-pack : center;
-        -webkit-justify-content : center;
-                justify-content : center;
+      .steph {
+          align-self: flex-start;
+          margin-left: auto;
       }
 
       .jumbotron {
@@ -87,6 +78,7 @@
       .jumbotron img {
         max-width: 100%;
         height: auto;
+        margin-bottom: 15px;
       }
 
       @media (min-width: 768px) {
@@ -107,12 +99,42 @@
           font-family: 'Comfortaa';
           font-size: 16px;
       }
+
+      .steph a {
+          font-family: 'Comfortaa';
+          font-size: 16px;
+          color: #009688;
+      }
+
+      .steph a:hover {
+          text-decoration: none;
+          color: #00796B;
+      }
+
+      .btn {
+          background-color: #009688;
+          color: #fff;
+      }
+
+      .btn:hover {
+          border: 1px solid #009688;
+          background-color: #fff !important;
+          color: #009688;
+      }
+
+      .fa-twitter {
+          color: #009688;
+      }
+
+      .fa-twitter:hover {
+          color: #00796B;
+      }
     </style>
 
   </head>
   <body>
     <div class="background container-fluid">
-      <p class="steph pull-right">by <a href="https://www.twitter.com/stephaniecodes">stephanie</a></p>
+      <p class="steph">by <a href="https://www.twitter.com/stephaniecodes">stephanie</a></p>
 
       <div class="vertical-center">
         <div class="jumbotron">
@@ -129,7 +151,7 @@
                 <a href="#" target="blank"><i class="fa fa-twitter fa-2x"></a></i>
               </div>
             </div>
-            <div class="col-xs-4 col-xs-offset-4"><button id="getQuote" class="btn btn-primary pull-right">Click</a></div>
+            <div class="col-xs-4 col-xs-offset-4"><button id="getQuote" class="btn pull-right">Click</a></div>
           </div>
 
         </div>
@@ -179,6 +201,7 @@
           $('.background').css({'background': newImage + " center center no-repeat", "min-height": "100%", "background-size": "cover"});
         });
 
+        // This gets all the random background images upon page load.
         image0 = new Image();
         image1 = new Image();
         image2 = new Image();
